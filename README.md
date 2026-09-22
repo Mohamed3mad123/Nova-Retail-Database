@@ -40,3 +40,83 @@ Nova-Retail-Database/
 │   └── Tables_List_View.png                # SSMS database schema view
 │
 └── README.md                               # Project documentation & deployment guide
+
+```
+
+---
+
+## 🖼️ Architecture & Database Diagrams
+
+### 📐 Conceptual ERD
+
+---
+
+### 🔗 Relational Mapping
+
+---
+
+### 🏛️ Physical Database Diagram
+
+---
+
+### ⚙️ Orders Table Constraints & Schema Details
+
+---
+
+### 🗃️ SSMS Tables List View
+
+---
+
+## 🗂️ Relational Schema & Table Definitions
+
+The system resolves M:N relationships into explicit junction tables to ensure 3NF compliance:
+
+| Table Name | Primary Key (PK) | Key Foreign Keys (FK) | Core Constraints & Business Logic |
+| --- | --- | --- | --- |
+| **customers** | `Customer_ID` | *None* | Primary customer records. |
+| **Customer_Phones** | `(Customer_ID, Phone_Number)` | `Customer_ID` | Resolves multi-valued phone attributes with `CASCADE` delete. |
+| **Customer_Emails** | `(Customer_ID, Email_Address)` | `Customer_ID` | Resolves multi-valued email attributes with `CASCADE` delete. |
+| **branches** | `branch_ID` | *None* | Physical retail store locations (`branch_Name` UNIQUE). |
+| **departments** | `department_ID` | *None* | Corporate organizational units (`department_Name` UNIQUE). |
+| **categories** | `CategoryID` | *None* | Product categorization hierarchy (`CategoryName` UNIQUE). |
+| **suppliers** | `Supplier_ID` | *None* | Product vendors and supplier details. |
+| **employees** | `employee_ID` | `branch_ID`, `department_ID`, `Supervisor_ID` | Self-referencing FK for supervisor hierarchy. |
+| **products** | `Product_ID` | `CategoryID` | Stores default `CurrentUnitPrice >= 0`. |
+| **supplied** | `(Supplier_ID, Product_ID)` | `Supplier_ID`, `Product_ID` | M:N Junction; stores distinct `AgreedPurchasePrice >= 0`. |
+| **orders** | `OrderID` | `Customer_ID`, `branch_ID`, `employee_ID` | Status constrained to `Pending`, `Completed`, `Cancelled`, `Returned`. |
+| **Order_Details** | `(OrderID, ProductID)` | `OrderID`, `ProductID` | M:N Junction; locks `Quantity > 0` & historical `UnitSellingPrice`. |
+| **Payment** | `Payment_ID` | `OrderID` | Payment split logic; Method constrained to `Cash`, `Card`, `Wallet`, `Bank Transfer`. |
+
+---
+
+## ⚙️ Deployment & Execution Guide
+
+To deploy this database locally on Microsoft SQL Server:
+
+1. **Get the Repository Files:**
+* **Option A (Via Git):** Run `git clone https://github.com/Mohamed3mad123/Nova-Retail-Database.git` in your terminal.
+* **Option B (Direct Download):** Click the green **`<Code>`** button at the top of this repository page and select **Download ZIP**.
+
+
+2. **Execute SQL Script:**
+* Open **SQL Server Management Studio (SSMS)**.
+* Open `SQL/01_Nova_Retail_Schema_And_Data.sql`.
+* Execute the script (`F5`) to automatically create the `Nova_Retail` database, define tables/constraints, and seed verification data.
+
+
+
+---
+
+## 📊 Sample Test Data & Edge Cases Supported
+
+The included DML seed script natively accommodates and validates the following operational business scenarios:
+
+* ✅ **Duplicate Customer Names:** Tracked independently via unique `Customer_ID` values (`Mohamed Khalil` present with ID `1` and ID `2`).
+* ✅ **Split Payments:** Orders distributed across multiple payment methods for a single order (`OrderID 10001` split into `Cash` + `Card`).
+* ✅ **Unassigned Departments:** Departments initialized with zero assigned employees (`Research & Development`).
+* ✅ **Executive Hierarchy:** Senior executives configured with `NULL` supervisors (`Ahmed Hassan` as CEO).
+* ✅ **Multi-Vendor Products:** Products mapped to multiple vendors with distinct `AgreedPurchasePrice` rates (`Wireless Gaming Mouse` sourced from 2 different vendors at $25.00 and $22.50).
+كد المطلوبة:**
+تأكد فقط أن أسماء الملفات داخل مجلد `docs/` مطابقة لأسماء الصور المكتوبة أعلاه بالضبط (نفس حالة الأحرف والكتابة `Conceptual_ERD.png`, `Relational_Mapping.png`, ...إلخ).
+
+```
