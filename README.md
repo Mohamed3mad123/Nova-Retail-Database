@@ -52,11 +52,11 @@ Nova-Retail-Database/
 
 ## 📎 Project Files
 
-### 📋 Business Requirements
+### Business Requirements
 
 The original business requirements and project specifications are available here:
 
-**[📄 View Business Requirements](./docs/Business%20Requirements.pdf)**
+[**📄 View Business Requirements**](./docs/Business_Requirements.pdf)
 
 ---
 
