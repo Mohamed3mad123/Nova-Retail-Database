@@ -1,8 +1,8 @@
 # 🛒 Nova Retail Group — Enterprise Database System
 
-An enterprise-grade Relational Database Management System (RDBMS) designed and implemented for **Nova Retail Group** using **Microsoft SQL Server**.
+An enterprise-grade **Relational Database Management System (RDBMS)** designed and implemented for **Nova Retail Group** using **Microsoft SQL Server**.
 
-This system centralizes multi-branch retail operations, handling customer interactions, multi-supplier products, inventory categorization, order processing, and multi-method payment splits.
+The system centralizes multi-branch retail operations, including customer management, multi-supplier products, inventory categorization, order processing, employee hierarchy, and multi-method payment processing.
 
 ---
 
@@ -10,17 +10,19 @@ This system centralizes multi-branch retail operations, handling customer intera
 
 Nova Retail Group operates across multiple branches with complex procurement and sales workflows.
 
-The goal of this project is to model and deploy a normalized database schema that enforces **Entity, Domain, and Referential Integrity** while solving key operational constraints:
+The goal of this project is to model and deploy a **normalized relational database** that enforces Entity, Domain, and Referential Integrity while addressing realistic operational requirements.
 
-- **Multi-Supplier Dynamics:** Products can be supplied by multiple vendors, with contractually agreed purchase prices tracked per supplier through the `supplied` junction table.
+### Key Business Requirements
 
-- **Recursive Employee Supervision:** Organizational hierarchy is mapped through a self-referencing relationship using `Supervisor_ID` within the `employees` table.
+- **Multi-Supplier Dynamics:** Products can be supplied by multiple vendors, with agreed purchase prices tracked per supplier through the `supplied` junction table.
 
-- **Order Line-Item Integrity:** Product selling prices are locked at the time of purchase using `UnitSellingPrice` to preserve historical accuracy against future product price changes.
+- **Recursive Employee Supervision:** Organizational hierarchy is represented through a self-referencing relationship using `Supervisor_ID` within the `employees` table.
 
-- **Flexible Split Payments:** A single order can be paid across multiple transactions and payment methods such as `Cash`, `Card`, `Wallet`, and `Bank Transfer`.
+- **Historical Order Pricing:** Product selling prices are stored at the time of purchase using `UnitSellingPrice`, preserving historical transaction accuracy even when product prices change later.
 
-- **Data Cleansing Readiness:** The database is designed to handle real-world legacy data edge cases, including trailing spaces, inconsistent case sensitivity, and missing contact records.
+- **Flexible Split Payments:** A single order can be paid using multiple transactions and payment methods such as `Cash`, `Card`, `Wallet`, and `Bank Transfer`.
+
+- **Data Quality Readiness:** The database accounts for real-world data quality issues such as trailing spaces, inconsistent capitalization, and missing customer contact records.
 
 ---
 
@@ -50,17 +52,27 @@ Nova-Retail-Database/
 
 ## 📎 Project Files
 
+### 📋 Business Requirements
+
+The original business requirements and project specifications are available here:
+
+**[📄 View Business Requirements](./docs/Business%20Requirements.pdf)**
+
+---
+
 ### 📊 Data Dictionary & Mapping
 
-[📥 Download Nova Retail Mapping & Data Excel File](Data_Exports/Nova_Retail_Mapping_And_Data.xlsx)
+**[📥 Open Nova Retail Mapping & Data](./Data_Exports/Nova_Retail_Mapping_And_Data.xlsx)**
 
 Contains the project's data dictionary, source mapping, and raw data preparation sets.
 
+---
+
 ### 🗃️ SQL Database Script
 
-[📥 Open SQL Schema & Data Script](SQL/01_Nova_Retail_Schema_And_Data.sql)
+**[📥 Open SQL Schema & Data Script](./SQL/01_Nova_Retail_Schema_And_Data.sql)**
 
-Contains the complete:
+Contains the complete database implementation, including:
 
 * Database creation
 * Table definitions
@@ -70,55 +82,55 @@ Contains the complete:
 * UNIQUE constraints
 * Referential integrity rules
 * Seed / test data
-* Edge-case test scenarios
-
-### 📋 Business Requirements
-
-[📄 View Business Requirements](docs/Business%20Requirements.pdf)
-
-Contains the project specifications, business requirements, and scope definition.
+* Edge-case scenarios
 
 ---
 
-# 🖼️ Architecture & Database Diagrams
+# 🖼️ Database Architecture & Documentation
+
+The database design was developed through multiple modeling stages:
+
+**Business Requirements → Conceptual ERD → Relational Mapping → Physical Database Implementation**
+
+---
 
 ## 📐 Conceptual ERD
 
-The conceptual ERD represents the high-level business entities and their relationships.
+High-level representation of the main business entities and their relationships.
 
-![Conceptual ERD](docs/Conceptual_ERD.png)
+![Conceptual ERD](./docs/Conceptual_ERD.png)
 
 ---
 
 ## 🔗 Relational Mapping
 
-The relational mapping shows how the conceptual model was transformed into relational tables.
+Transformation of the conceptual model into relational tables, including the resolution of M:N relationships.
 
-![Relational Mapping](docs/Relational_Mapping.png)
+![Relational Mapping](./docs/Relational_Mapping.png)
 
 ---
 
 ## 🏛️ Physical Database Diagram
 
-The physical database diagram shows the implemented database structure, including primary keys, foreign keys, and table relationships.
+Complete physical database structure showing tables, Primary Keys, Foreign Keys, and relationships.
 
-![Physical Database Diagram](docs/Physical_Database_Diagram.png)
-
----
-
-## ⚙️ Orders Table Constraints & Schema Details
-
-Technical documentation of the `orders` table, including its constraints and schema implementation.
-
-![Orders Table Constraints](docs/Orders_Table_Constraints.png)
+![Physical Database Diagram](./docs/Physical_Database_Diagram.png)
 
 ---
 
-## 🗃️ SSMS Tables List View
+## ⚙️ Orders Table Constraints
 
-The following screenshot shows the implemented database tables inside SQL Server Management Studio (SSMS).
+Technical documentation of the `orders` table and its implemented business constraints.
 
-![SSMS Tables List View](docs/Tables_List_View.png)
+![Orders Table Constraints](./docs/Orders_Table_Constraints.png)
+
+---
+
+## 🗃️ SQL Server Tables
+
+Database schema as implemented and displayed in SQL Server Management Studio (SSMS).
+
+![SSMS Tables List View](./docs/Tables_List_View.png)
 
 ---
 
@@ -126,55 +138,45 @@ The following screenshot shows the implemented database tables inside SQL Server
 
 The system resolves **M:N relationships** into explicit junction tables to support normalization and maintain **3NF compliance**.
 
-| Table Name          | Primary Key (PK)               | Key Foreign Keys (FK)                         | Core Constraints & Business Logic                                                        |
-| ------------------- | ------------------------------ | --------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| **customers**       | `Customer_ID`                  | None                                          | Primary customer records.                                                                |
-| **Customer_Phones** | `(Customer_ID, Phone_Number)`  | `Customer_ID`                                 | Resolves multi-valued phone attributes with `CASCADE` delete.                            |
-| **Customer_Emails** | `(Customer_ID, Email_Address)` | `Customer_ID`                                 | Resolves multi-valued email attributes with `CASCADE` delete.                            |
-| **branches**        | `branch_ID`                    | None                                          | Physical retail store locations. `branch_Name` is UNIQUE.                                |
-| **departments**     | `department_ID`                | None                                          | Corporate organizational units. `department_Name` is UNIQUE.                             |
-| **categories**      | `CategoryID`                   | None                                          | Product categorization hierarchy. `CategoryName` is UNIQUE.                              |
-| **suppliers**       | `Supplier_ID`                  | None                                          | Product vendors and supplier details.                                                    |
-| **employees**       | `employee_ID`                  | `branch_ID`, `department_ID`, `Supervisor_ID` | Self-referencing FK for supervisor hierarchy.                                            |
-| **products**        | `Product_ID`                   | `CategoryID`                                  | Stores default `CurrentUnitPrice >= 0`.                                                  |
-| **supplied**        | `(Supplier_ID, Product_ID)`    | `Supplier_ID`, `Product_ID`                   | M:N junction table; stores `AgreedPurchasePrice >= 0`.                                   |
-| **orders**          | `OrderID`                      | `Customer_ID`, `branch_ID`, `employee_ID`     | Status constrained to `Pending`, `Completed`, `Cancelled`, `Returned`.                   |
-| **Order_Details**   | `(OrderID, ProductID)`         | `OrderID`, `ProductID`                        | M:N junction table; enforces `Quantity > 0` and preserves historical `UnitSellingPrice`. |
-| **Payment**         | `Payment_ID`                   | `OrderID`                                     | Supports split payments across `Cash`, `Card`, `Wallet`, and `Bank Transfer`.            |
+| Table Name          | Primary Key (PK)               | Key Foreign Keys (FK)                         | Core Constraints & Business Logic                                                  |
+| ------------------- | ------------------------------ | --------------------------------------------- | ---------------------------------------------------------------------------------- |
+| **customers**       | `Customer_ID`                  | None                                          | Primary customer records.                                                          |
+| **Customer_Phones** | `(Customer_ID, Phone_Number)`  | `Customer_ID`                                 | Resolves multi-valued phone attributes with `CASCADE` delete.                      |
+| **Customer_Emails** | `(Customer_ID, Email_Address)` | `Customer_ID`                                 | Resolves multi-valued email attributes with `CASCADE` delete.                      |
+| **branches**        | `branch_ID`                    | None                                          | Physical retail store locations. `branch_Name` is UNIQUE.                          |
+| **departments**     | `department_ID`                | None                                          | Corporate organizational units. `department_Name` is UNIQUE.                       |
+| **categories**      | `CategoryID`                   | None                                          | Product categorization hierarchy. `CategoryName` is UNIQUE.                        |
+| **suppliers**       | `Supplier_ID`                  | None                                          | Product vendors and supplier details.                                              |
+| **employees**       | `employee_ID`                  | `branch_ID`, `department_ID`, `Supervisor_ID` | Self-referencing FK for supervisor hierarchy.                                      |
+| **products**        | `Product_ID`                   | `CategoryID`                                  | Stores default `CurrentUnitPrice >= 0`.                                            |
+| **supplied**        | `(Supplier_ID, Product_ID)`    | `Supplier_ID`, `Product_ID`                   | M:N junction; stores `AgreedPurchasePrice >= 0`.                                   |
+| **orders**          | `OrderID`                      | `Customer_ID`, `branch_ID`, `employee_ID`     | Status constrained to `Pending`, `Completed`, `Cancelled`, `Returned`.             |
+| **Order_Details**   | `(OrderID, ProductID)`         | `OrderID`, `ProductID`                        | M:N junction; enforces `Quantity > 0` and preserves historical `UnitSellingPrice`. |
+| **Payment**         | `Payment_ID`                   | `OrderID`                                     | Supports split payments across `Cash`, `Card`, `Wallet`, and `Bank Transfer`.      |
 
 ---
 
 # ⚙️ Deployment & Execution Guide
 
-To deploy this database locally using **Microsoft SQL Server**:
-
-## 1. Get the Repository
-
-### Option A — Clone via Git
+## 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Mohamed3mad123/Nova-Retail-Database.git
 ```
 
-Then navigate to the project directory:
+Then:
 
 ```bash
 cd Nova-Retail-Database
 ```
 
-### Option B — Download ZIP
-
-Click the green **Code** button on the GitHub repository page and select:
-
-**Download ZIP**
+Alternatively, use the GitHub **Code → Download ZIP** option.
 
 ---
 
 ## 2. Execute the SQL Script
 
-Open **SQL Server Management Studio (SSMS)**.
-
-Open:
+Open **SQL Server Management Studio (SSMS)** and open:
 
 ```text
 SQL/01_Nova_Retail_Schema_And_Data.sql
@@ -189,23 +191,21 @@ F5
 The script will:
 
 1. Create the `Nova_Retail` database.
-2. Create the required tables.
+2. Create all required tables.
 3. Define Primary Keys and Foreign Keys.
 4. Apply integrity and business-rule constraints.
 5. Insert seed/test data.
-6. Provide edge cases for validation.
+6. Validate several real-world edge cases.
 
 ---
 
 # 📊 Sample Test Data & Edge Cases
 
-The included DML seed script accommodates and validates several realistic operational scenarios:
+The included DML seed script demonstrates several realistic business scenarios.
 
 ### ✅ Duplicate Customer Names
 
-Customers can share the same name while remaining uniquely identified through `Customer_ID`.
-
-Example:
+Customers can share the same name while remaining uniquely identified by `Customer_ID`.
 
 ```text
 Mohamed Khalil → Customer_ID 1
@@ -217,8 +217,6 @@ Mohamed Khalil → Customer_ID 2
 ### ✅ Split Payments
 
 A single order can be distributed across multiple payment methods.
-
-Example:
 
 ```text
 OrderID 10001
@@ -232,8 +230,6 @@ OrderID 10001
 
 Departments can exist without currently assigned employees.
 
-Example:
-
 ```text
 Research & Development
 ```
@@ -244,8 +240,6 @@ Research & Development
 
 Senior executives can have a `NULL` supervisor because they represent the top level of the organizational hierarchy.
 
-Example:
-
 ```text
 Ahmed Hassan → CEO
 Supervisor_ID → NULL
@@ -255,9 +249,7 @@ Supervisor_ID → NULL
 
 ### ✅ Multi-Vendor Products
 
-The database supports products supplied by multiple vendors with different agreed purchase prices.
-
-Example:
+A product can be supplied by multiple vendors with different agreed purchase prices.
 
 ```text
 Wireless Gaming Mouse
@@ -269,8 +261,6 @@ Vendor 2 → $22.50
 ---
 
 # 🧠 Key Database Design Concepts Demonstrated
-
-This project demonstrates practical implementation of:
 
 * Relational Database Design
 * ERD Modeling
@@ -296,11 +286,13 @@ This project demonstrates practical implementation of:
 
 # 🛠️ Technologies
 
-* **Microsoft SQL Server**
-* **SQL Server Management Studio (SSMS)**
-* **SQL**
-* **Excel**
-* **ERD / Database Modeling**
+| Technology                       | Purpose                         |
+| -------------------------------- | ------------------------------- |
+| **Microsoft SQL Server**         | Database Engine                 |
+| **SQL Server Management Studio** | Database Development & Testing  |
+| **SQL**                          | DDL, DML & Constraints          |
+| **Excel**                        | Data Mapping & Data Preparation |
+| **ERD Modeling**                 | Database Design                 |
 
 ---
 
@@ -310,4 +302,8 @@ This project demonstrates practical implementation of:
 
 Data Analyst | SQL | Power BI | Excel
 
-[GitHub](https://github.com/Mohamed3mad123)
+[GitHub Profile](https://github.com/Mohamed3mad123)
+
+
+
+وده كمان ينطبق على الـExcel والـSQL، فكل الملفات الموجودة في الـrepository بقت مربوطة بطريقة مباشرة ونظيفة.
