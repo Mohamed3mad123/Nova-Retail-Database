@@ -114,6 +114,3 @@ The included DML seed script validates the following business scenarios:
 * ✅ Senior executives with `NULL` supervisors.
 * ✅ Products mapped to multiple vendors with distinct `AgreedPurchasePrice` rates.
 
-```
-
-```
