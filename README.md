@@ -47,15 +47,22 @@ Nova-Retail-Database/
 
 ## 🖼️ Architecture & Database Diagrams
 
-Explore the visual design models and structural documentation for this system:
+### 📐 Conceptual ERD
 
-* **Business Requirements & Scope:** 📄 [Business_Requirements.pdf](https://www.google.com/search?q=docs/Business_Requirements.pdf&utm_source=gemini)
-* **Conceptual ERD:** 📐 [Conceptual_ERD.png](https://www.google.com/search?q=docs/Conceptual_ERD.png&utm_source=gemini)
-* **Relational Mapping:** 🔗 [Relational_Mapping.png](https://www.google.com/search?q=docs/Relational_Mapping.png&utm_source=gemini)
-* **Physical Database Diagram:** 🏛️ [Physical_Database_Diagram.png](https://www.google.com/search?q=docs/Physical_Database_Diagram.png&utm_source=gemini)
-* **Orders Constraints Detail:** ⚙️ [Orders_Table_Constraints.png](https://www.google.com/search?q=docs/Orders_Table_Constraints.png&utm_source=gemini)
-* **SSMS Tables List View:** 🗃️ [Tables_List_View.png](https://www.google.com/search?q=docs/Tables_List_View.png&utm_source=gemini)
-* **Data Mapping & Dictionary File:** 📊 [Nova_Retail_Mapping_And_Data.xlsx](https://www.google.com/search?q=Data_Exports/Nova_Retail_Mapping_And_Data.xlsx&utm_source=gemini)
+### 🔗 Relational Mapping
+
+### 🏛️ Physical Database Diagram
+
+### ⚙️ Orders Table Constraints & Schema Details
+
+### 🗃️ SSMS Tables List View
+
+---
+
+### 📄 Supporting Files & Documentation
+
+* 📄 **Business Requirements:** [Business_Requirements.pdf](https://www.google.com/search?q=docs/Business_Requirements.pdf&utm_source=gemini)
+* 📊 **Data Mapping & Dictionary:** [Nova_Retail_Mapping_And_Data.xlsx](https://www.google.com/search?q=Data_Exports/Nova_Retail_Mapping_And_Data.xlsx&utm_source=gemini)
 
 ---
 
