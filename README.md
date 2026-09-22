@@ -1,9 +1,5 @@
 # 🛒 Nova Retail Group — Enterprise Database System
 
-[![SQL Server](https://img.shields.io/badge/Database-SQL_Server_2022-red?style=flat&logo=microsoftsqlserver)](#-deployment--execution-guide)
-[![Data Modeling](https://img.shields.io/badge/Design-Relational_Schema_%26_ERD-blue)](#%EF%B8%8F-relational-schema--table-definitions)
-[![Data Integrity](https://img.shields.io/badge/Integrity-Strict_Constraints-green)](#-sample-test-data--edge-cases-supported)
-
 An enterprise-grade Relational Database Management System (RDBMS) designed and implemented for **Nova Retail Group** using **Microsoft SQL Server**. This system centralizes multi-branch retail operations, handling customer interactions, multi-supplier products, inventory categorization, order processing, and multi-method payment splits.
 
 ---
@@ -40,6 +36,7 @@ Nova-Retail-Database/
 │   └── Tables_List_View.png                # SSMS database schema view
 │
 └── README.md                               # Project documentation & deployment guide
+
 ```
 
 ---
@@ -93,7 +90,7 @@ The system resolves M:N relationships into explicit junction tables to ensure 3N
 To deploy this database locally on Microsoft SQL Server:
 
 1. **Get the Repository Files:**
-* **Option A (Via Git):** Run `git clone https://github.com/Mohamed3mad123/Nova-Retail-Database.git` in your terminal.
+* **Option A (Via Git):** Run `git clone [https://github.com/Mohamed3mad123/Nova-Retail-Database.git](https://github.com/Mohamed3mad123/Nova-Retail-Database.git)` in your terminal.
 * **Option B (Direct Download):** Click the green **`<Code>`** button at the top of this repository page and select **Download ZIP**.
 
 
@@ -115,10 +112,3 @@ The included DML seed script natively accommodates and validates the following o
 * ✅ **Unassigned Departments:** Departments initialized with zero assigned employees (`Research & Development`).
 * ✅ **Executive Hierarchy:** Senior executives configured with `NULL` supervisors (`Ahmed Hassan` as CEO).
 * ✅ **Multi-Vendor Products:** Products mapped to multiple vendors with distinct `AgreedPurchasePrice` rates (`Wireless Gaming Mouse` sourced from 2 different vendors at $25.00 and $22.50).
-
-```
-
----
-💡 **ملاحظة سريعة:** إذا قمت بحفظ هذا الملف ولسبب ما لم يظهر الشكل المرئي للصورة، ستكون مسألة أن جيت هب محتاج المسار المباشر الكامل المباشر المأخوذ من رابط الصورة على المستودع (RAW URL)، ويمكنك سحب الصور وإفلاتها (Drag & Drop) في نافذة التعديل بالماوس وسيقوم جيت هب بتوليد رابط مباشر لها تلقائياً.
-
-```
