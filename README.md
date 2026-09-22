@@ -303,7 +303,3 @@ Vendor 2 → $22.50
 Data Analyst | SQL | Power BI | Excel
 
 [GitHub Profile](https://github.com/Mohamed3mad123)
-
-
-
-وده كمان ينطبق على الـExcel والـSQL، فكل الملفات الموجودة في الـrepository بقت مربوطة بطريقة مباشرة ونظيفة.
