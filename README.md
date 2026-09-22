@@ -82,14 +82,18 @@ Nova-Retail-Database/
 
 ---
 
-## ⚙️ Deployment & Execution Guide
+### ⚙️ Deployment & Execution Guide
 
 To deploy this database locally on Microsoft SQL Server:
 
-1. Clone this repository:
-```bash
-git clone [https://github.com/Mohamed3mad123/Nova-Retail-Database.git](https://github.com/Mohamed3mad123/Nova-Retail-Database.git)
+1. **Get the Repository Files:**
+   * **Option A (Via Git):** Run `git clone https://github.com/Mohamed3mad123/Nova-Retail-Database.git` in your terminal.
+   * **Option B (Direct Download):** Click the green **`<Code>`** button at the top of this repository page and select **Download ZIP**.
 
+2. **Execute SQL Script:**
+   * Open **SQL Server Management Studio (SSMS)**.
+   * Open `SQL/01_Nova_Retail_Schema_And_Data.sql`.
+   * Execute the script (`F5`) to build the database, tables, constraints, and seed data.
 ```
 
 
