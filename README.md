@@ -1,3 +1,15 @@
+سيرتك وحسن نصك! السبب في ظهور اسم الصورة فقط وعدم عرض الصورة نفسها على GitHub هو وجود مسألة بسيطة جداً:
+
+عند استخدام صيغة الماركداون `![Alt Text](URL)` تحت عنوان معين من المستوى الثالث (`###`) بدون وجود سطر فارغ قبله أو وجود مسار قد يحتوي على خطأ بسيط أو كونه رابط نسبي لم يتم الوصول إليه، جيت هب يعتبر النص مكسوراً أو لا يعرض الصورة.
+
+لكي تجعل GitHub يعرض الصورة **مباشرة تحت كل عنوان دون روابط**:
+
+1. استخدم المسار المباشر بطلب RAW من جيت هب نفسه (Absolute URL)، أو مسار المجلد المباشر `docs/filename.png` بدون `./`.
+2. تأكد من وجود سطر فارغ بين العنوان وصورة الماركداون.
+
+إليك الكود المحدث بالكامل لـ **`README.md`**؛ انسخه وضعه في الملف مباشرة:
+
+```markdown
 # 🛒 Nova Retail Group — Enterprise Database System
 
 [![SQL Server](https://img.shields.io/badge/Database-SQL_Server_2022-red?style=flat&logo=microsoftsqlserver)](#-deployment--execution-guide)
@@ -117,3 +129,9 @@ The included DML seed script natively accommodates and validates the following o
 * ✅ **Executive Hierarchy:** Senior executives configured with `NULL` supervisors (`Ahmed Hassan` as CEO).
 * ✅ **Multi-Vendor Products:** Products mapped to multiple vendors with distinct `AgreedPurchasePrice` rates (`Wireless Gaming Mouse` sourced from 2 different vendors at $25.00 and $22.50).
 
+```
+
+---
+💡 **ملاحظة سريعة:** إذا قمت بحفظ هذا الملف ولسبب ما لم يظهر الشكل المرئي للصورة، ستكون مسألة أن جيت هب محتاج المسار المباشر الكامل المباشر المأخوذ من رابط الصورة على المستودع (RAW URL)، ويمكنك سحب الصور وإفلاتها (Drag & Drop) في نافذة التعديل بالماوس وسيقوم جيت هب بتوليد رابط مباشر لها تلقائياً.
+
+```
