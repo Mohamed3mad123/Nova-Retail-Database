@@ -3,7 +3,7 @@
 
 [![SQL Server](https://img.shields.io/badge/Database-SQL_Server_2022-red?style=flat&logo=microsoftsqlserver)](SQL/01_Nova_Retail_Schema_And_Data.sql)
 [![Data Modeling](https://img.shields.io/badge/Design-Relational_Schema_%26_ERD-blue)](#-conceptual--physical-architecture)
-[![Data Integrity](https://img.shields.io/badge/Integrity-Strict_Constraints-green)](#-relational-schema--table-definitions)
+[![Data Integrity](https://img.shields.io/badge/Integrity-Strict_Constraints-green)](#%EF%B8%8F-relational-schema--table-definitions)
 
 An enterprise-grade Relational Database Management System (RDBMS) designed and implemented for **Nova Retail Group** using **Microsoft SQL Server**. This system centralizes multi-branch retail operations, handling customer interactions, multi-supplier products, inventory categorization, order processing, and multi-method payment splits.
 
