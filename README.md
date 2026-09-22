@@ -47,23 +47,23 @@ Nova-Retail-Database/
 
 ## 🖼️ Architecture & Database Diagrams
 
-### 📐 Conceptual ERD
+### 📐 Conceptual ERD (`Conceptual_ERD.png`)
 
 ---
 
-### 🔗 Relational Mapping
+### 🔗 Relational Mapping (`Relational_Mapping.png`)
 
 ---
 
-### 🏛️ Physical Database Diagram
+### 🏛️ Physical Database Diagram (`Physical_Database_Diagram.png`)
 
 ---
 
-### ⚙️ Orders Table Constraints & Schema Details
+### ⚙️ Orders Table Constraints & Schema Details (`Orders_Table_Constraints.png`)
 
 ---
 
-### 🗃️ SSMS Tables List View
+### 🗃️ SSMS Tables List View (`Tables_List_View.png`)
 
 ---
 
@@ -117,6 +117,3 @@ The included DML seed script natively accommodates and validates the following o
 * ✅ **Executive Hierarchy:** Senior executives configured with `NULL` supervisors (`Ahmed Hassan` as CEO).
 * ✅ **Multi-Vendor Products:** Products mapped to multiple vendors with distinct `AgreedPurchasePrice` rates (`Wireless Gaming Mouse` sourced from 2 different vendors at $25.00 and $22.50).
 
-📌 **سبب التعديل:** تم إضافة `./` قبل اسم مجلد `docs` (مثل `./docs/Conceptual_ERD.png`) ليفهم GitHub أن المسار محلي ومباشر بدلاً من اعتباره رابطاً خارجياً.
-
-```
