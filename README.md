@@ -1,4 +1,4 @@
-```markdown
+
 # 🛒 Nova Retail Group — Enterprise Database System
 
 ![SQL Server](https://img.shields.io/badge/Database-SQL_Server_2022-red?style=flat&logo=microsoftsqlserver)
