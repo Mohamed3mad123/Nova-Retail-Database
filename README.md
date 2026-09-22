@@ -1,6 +1,6 @@
 # 🛒 Nova Retail Group — Enterprise Database System
 
-[![SQL Server](https://img.shields.io/badge/Database-SQL_Server_2022-red?style=flat&logo=microsoftsqlserver)](#-deployment--execution-guide)
+[![SQL Server](https://img.shields.io/badge/Database-SQL_Server_2022-red?style=flat&logo=microsoftsqlserver)](SQL/01_Nova_Retail_Schema_And_Data.sql)
 [![Data Modeling](https://img.shields.io/badge/Design-Relational_Schema_%26_ERD-blue)](#%EF%B8%8F-relational-schema--table-definitions)
 [![Data Integrity](https://img.shields.io/badge/Integrity-Strict_Constraints-green)](#-sample-test-data--edge-cases-supported)
 
@@ -42,28 +42,6 @@ Nova-Retail-Database/
 └── README.md                               # Project documentation & deployment guide
 
 ```
-
----
-
-## 🖼️ Architecture & Database Diagrams
-
-### 📐 Conceptual ERD
-
----
-
-### 🔗 Relational Mapping
-
----
-
-### 🏛️ Physical Database Diagram
-
----
-
-### ⚙️ Orders Table Constraints & Schema Details
-
----
-
-### 🗃️ SSMS Tables List View
 
 ---
 
@@ -116,7 +94,3 @@ The included DML seed script natively accommodates and validates the following o
 * ✅ **Unassigned Departments:** Departments initialized with zero assigned employees (`Research & Development`).
 * ✅ **Executive Hierarchy:** Senior executives configured with `NULL` supervisors (`Ahmed Hassan` as CEO).
 * ✅ **Multi-Vendor Products:** Products mapped to multiple vendors with distinct `AgreedPurchasePrice` rates (`Wireless Gaming Mouse` sourced from 2 different vendors at $25.00 and $22.50).
-كد المطلوبة:**
-تأكد فقط أن أسماء الملفات داخل مجلد `docs/` مطابقة لأسماء الصور المكتوبة أعلاه بالضبط (نفس حالة الأحرف والكتابة `Conceptual_ERD.png`, `Relational_Mapping.png`, ...إلخ).
-
-```
